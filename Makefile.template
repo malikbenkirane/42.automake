@@ -1,0 +1,30 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mben-kir <mben-kir@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/07/04 19:05:31 by mben-kir          #+#    #+#              #
+#    Updated: 2018/07/05 11:14:30 by mben-kir         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FT_NAME := 
+
+all: main.c test
+
+main.c:
+	cp ../main.c .
+
+test: ../ft_putchar.o ${FT_NAME}.o main.c
+	gcc -o $@ $^
+	./test | cat -e
+	@echo
+
+%.o: %.c
+	norminette -R CheckForbiddenSourceHeader $< \
+		&& gcc -o $@ -Wall -Werror -Wextra -c $<
+
+clean:
+	rm -f test
