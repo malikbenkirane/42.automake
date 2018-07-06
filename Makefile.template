@@ -6,26 +6,27 @@
 #    By: mben-kir <mben-kir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/04 19:05:31 by mben-kir          #+#    #+#              #
-#    Updated: 2018/07/06 14:28:53 by mben-kir         ###   ########.fr        #
+#    Updated: 2018/07/07 00:13:45 by mben-kir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FT_NAME := 
 
-all: main.c test
-
-main.c:
-	cp ../main.c .
+all: main.c test printtest norme
 
 # TODO remove ft_putchar.o dependencies
 test: ../ft_putchar.o ${FT_NAME}.o main.c
 	gcc -o $@ $^
+
+printtest:
 	./test | cat -e
 	@echo
 
+norme: ${FT_NAME}.c
+	norminette -R CheckForbiddenSourceHeader $<
+
 %.o: %.c
-	norminette -R CheckForbiddenSourceHeader $< \
-		&& gcc -o $@ -Wall -Werror -Wextra -c $<
+	gcc -o $@ -Wall -Werror -Wextra -c $<
 
 clean:
 	rm -f test
