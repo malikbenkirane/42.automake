@@ -6,17 +6,20 @@
 #    By: mben-kir <mben-kir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/04 19:05:31 by mben-kir          #+#    #+#              #
-#    Updated: 2018/07/07 17:23:07 by mben-kir         ###   ########.fr        #
+#    Updated: 2018/07/07 21:14:41 by mben-kir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FT_NAME := 
 DEPS :=
 
+CFLAGS := -Wall -Wextra -Werror
+CC := gcc
+
 all: main.c norme test printtest 
 
 test: ${DEPS} ${FT_NAME}.o main.c
-	gcc -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 printtest:
 	./test | cat -e
@@ -36,7 +39,7 @@ norme: ${FT_NAME}.c
 	fi
 
 %.o: %.c
-	gcc -o $@ -Wall -Werror -Wextra -c $<
+	$(CC) -o $@ $(CFLAGS) -c $<
 
 clean:
 	rm -f test
