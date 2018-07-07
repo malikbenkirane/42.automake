@@ -6,12 +6,12 @@
 #    By: mben-kir <mben-kir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/04 19:05:37 by mben-kir          #+#    #+#              #
-#    Updated: 2018/07/07 14:59:23 by mben-kir         ###   ########.fr        #
+#    Updated: 2018/07/07 16:02:44 by mben-kir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NORMETTE_FLAGS := -R CheckForbiddenSourceHeader
-# TODO change to load from environment variable
+
 SUBDIRS := $(shell \
 	for file in `git ls-tree -r master --name-only`; \
 	do dirname $$file; \
@@ -28,8 +28,8 @@ ${SUBDIRS}:
 	@echo '---------------------------------------------------------------'
 
 norme: 
-	for file in $$(git ls-tree -r master --name-only) ; do \
-		norminette ${NORMETTE_FLAGS} $$file ; \
+	@for dir in ${SUBDIRS} ; do \
+		$(MAKE) -C $$dir norme ; \
 	done
 
 clean:
@@ -37,9 +37,5 @@ clean:
 	| grep x86_64 \
 	| cut -d: -f1 \
 	| xargs rm -v
-
-%.o: %.c
-	norminette -R CheckForbiddenSourceHeader $< \
-		&& gcc -o $@ -Wall -Werror -Wextra -c $<
 
 .PHONY: test ${SUBDIRS}

@@ -3,6 +3,7 @@ More will come later.
 - [disclosure](#warning)
 - [how to use](#basic-usage)
 - [how to setup](#install)
+- [troubleshooting](#troubleshooting)
 
 # Warning
 
@@ -35,23 +36,30 @@ See [issue #2](https://github.com/malikbenkirane/42.automake/issues/2)
 
 tested by me, for me and for day02
 
-# Install
+# Usage
 
-1. clone the repo
-2. 
-  ```
-  cd 42.automake
-  cp Makefile.template main.c.template mtemplate configure Makefile ..
-  cd ..
-  ```
-
-# Basic usage
-
-1. edit `SUBDIRS` in `Makefile`
+1. run `install.sh` in your repo
 2. either
-  - `sh mtemplate exNN/ft_name` to target an exercice, or
+  - `sh mtemplate exNN/ft_name` to configure an exercice, or
   - `sh configure` to target them all
+3. edit `DEPS` line in `Makefile` (e.g. `DEPS := ft_putchar.o`)
+4. solve dependencies (e.g. `gcc -c <automake-repo-root>/deps/ft_putchar.c`)
+3. run `make` with
+  - `test` recipe
+  	 compiles, tests if the sources comply to the norm then runs compiled tests
+  - `norme` recipe
+
 
 # Troubleshooting
 
-1. solve object files depencies
+**broken dependency**
+
+If you get
+```
+make: *** No rule to make target `<allowed_function>.o', needed by `test'.  Stop.
+```
+while running `make <recipe>` then you should
+
+**tests**
+
+see [roadmap section](#roadmap)
