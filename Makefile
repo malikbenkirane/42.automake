@@ -6,7 +6,7 @@
 #    By: mben-kir <mben-kir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/04 19:05:37 by mben-kir          #+#    #+#              #
-#    Updated: 2018/07/07 12:51:24 by mben-kir         ###   ########.fr        #
+#    Updated: 2018/07/07 14:59:23 by mben-kir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,4 +42,4 @@ clean:
 	norminette -R CheckForbiddenSourceHeader $< \
 		&& gcc -o $@ -Wall -Werror -Wextra -c $<
 
-# .PHONY: test $(SUBDIRS)
+.PHONY: test ${SUBDIRS}
