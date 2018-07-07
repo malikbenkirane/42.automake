@@ -6,7 +6,7 @@
 #    By: mben-kir <mben-kir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/04 19:05:37 by mben-kir          #+#    #+#              #
-#    Updated: 2018/07/07 16:02:44 by mben-kir         ###   ########.fr        #
+#    Updated: 2018/07/07 16:35:18 by mben-kir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ SUBDIRS := $(shell \
 	do dirname $$file; \
 	done)
 
-# TODO remove ft_putchar.o dependencies
-test: ft_putchar.o ${SUBDIRS}
+DEPS := 
+test: ${DEPS} ${SUBDIRS}
 
 ${SUBDIRS}:
 	@echo
