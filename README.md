@@ -6,15 +6,15 @@ More will come later.
 
 # Warning
 
-This tool does not intend to make what you should. It rathers provides tools to
-automatize repetitive tasks and let you savte time to solve higher problems.
+This tool does not intend to make what you should do by yourself. It rathers
+provides tools to automatize repetitive tasks and let you save time to solve
+higher problems.
 
 The tool also demonstrate what could be done with `make` (`man 1 make`)
 and shows some `Makefile` recipes and tricks.
 
-If you want to keep your freedom to think and to understand hence first read
-the scripts.  I give no warranty you will understand what's hapenning here but
-it's your job to get that.  Further, I will not be responsible if case you miss
+First read the scripts if you want to keep your freedom to think and to
+understand.  I give no warranty you will understand what's hapenning here but it's your job to get that.  Further, I will not be responsible in case you miss
 to get the skills covered by this project.
 
 Finally,  things may change a lot over time.
