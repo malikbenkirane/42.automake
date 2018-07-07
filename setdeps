@@ -1,0 +1,28 @@
+#!/bin/sh
+# deps are object files compiled with the `-c` `gcc` flag.
+# They should be located in the root of the repository.
+
+if test -z "$@"
+then
+  echo usage: setdeps function_name [...]
+  exit 1
+fi
+
+DEPS1=
+DEPS0=
+for dep in "$@"
+do
+	DEPS1="$DEPS \\.\\.\\/$dep.o"
+	DEPS0="$DEPS $dep.o"
+done
+EDIT_OPERATION1='/^DEPS/s/:=.*$/:= '"$DEPS1"'/'
+EDIT_OPERATION0='/^DEPS/s/:=.*$/:= '"$DEPS0"'/'
+
+# set deps in root Makefile
+sed -e "$EDIT_OPERATION0" -i '' Makefile
+
+# set deps in exercices Makefiles
+for file in $(git ls-tree -r master --name-only)
+do
+	sed -e "$EDIT_OPERATION1" -i '' $(dirname $file)/Makefile
+done
