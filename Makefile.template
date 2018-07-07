@@ -6,7 +6,7 @@
 #    By: mben-kir <mben-kir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/04 19:05:31 by mben-kir          #+#    #+#              #
-#    Updated: 2018/07/07 21:14:41 by mben-kir         ###   ########.fr        #
+#    Updated: 2018/07/07 23:32:01 by mben-kir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,4 +42,4 @@ norme: ${FT_NAME}.c
 	$(CC) -o $@ $(CFLAGS) -c $<
 
 clean:
-	rm -f test
+	rm -f test ${FT_NAME}.o
