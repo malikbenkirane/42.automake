@@ -1,4 +1,6 @@
 #!/bin/sh
+cd "$PWD"
+
 ex_ref=$(echo $1 | cut -d/ -f1)
 ex_fnm=$(echo $1 | cut -d/ -f2)
 
