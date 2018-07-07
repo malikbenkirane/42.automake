@@ -1,7 +1,7 @@
 More will come later.
 
 - [disclosure](#warning)
-- [how to use](#basic-usage)
+- [how to use](#usage)
 - [how to setup](#install)
 - [troubleshooting](#troubleshooting)
 - [toolkit description](#the-toolkit)
