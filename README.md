@@ -4,6 +4,7 @@ More will come later.
 - [how to use](#basic-usage)
 - [how to setup](#install)
 - [troubleshooting](#troubleshooting)
+- [toolkit description](#the-toolkit)
 
 # Warning
 
@@ -15,7 +16,8 @@ The tool also demonstrate what could be done with `make` (`man 1 make`)
 and shows some `Makefile` recipes and tricks.
 
 First read the scripts if you want to keep your freedom to think and to
-understand.  I give no warranty you will understand what's hapenning here but it's your job to get that.  Further, I will not be responsible in case you miss
+understand.  I give no warranty you will understand what's hapenning here but
+it's your job to get that.  Further, I will not be responsible in case you miss
 to get the skills covered by this project.
 
 Finally,  things may change a lot over time.
@@ -36,29 +38,41 @@ See [issue #2](https://github.com/malikbenkirane/42.automake/issues/2)
 
 tested by me, for me and for day02
 
+# The toolkit
+
+- `mtemplate <ex##>/<ft_name>` creates the `Makefile` and the `main.c` that
+  corresponds to exercice `<ex##>` and function`<ft_name>`.
+  Both are generated from `Makefile.template` and `main.c.template`
+  e.g.
+  ```
+  ./mtemplate ex00/ft_ft
+  ```
+- `setdeps <ft_name> [...]` configures the required allowed functions
+  `<ft_name> [...]` by setting `DEPS` variables in all the Makefiles.
+  e.g.
+  ```
+  ./setdeps ft_putchar
+  ```
+- `configure` runs `mtemplate` for every commited solution.
+
 # Usage
 
-1. run `install.sh` in your repo
-2. either
-  - `sh mtemplate exNN/ft_name` to configure an exercice, or
-  - `sh configure` to target them all
-3. edit `DEPS` line in `Makefile` (e.g. `DEPS := ft_putchar.o`)
-4. solve dependencies (e.g. `gcc -c <automake-repo-root>/deps/ft_putchar.c`)
-3. run `make` with
-  - `test` recipe
-  	 compiles, tests if the sources comply to the norm then runs compiled tests
-  - `norme` recipe
+1. run `install.sh` in the repo with the solutions
+2. either run `mtemplate` or `configure` (see [toolkit](#the-toolkit))
+3. solve dependencies
+	1. run `setdeps`
+	2. compile dependencies (some are available in `<thisrepo-root>/deps`), e.g.,
+	   ```
+	   gcc -c <thisrepo-root>/deps/<ft_name>.c
+	   ```
+3. run `make` (recipes are `norme`, `test`)
 
 
 # Troubleshooting
 
 **broken dependency**
 
-If you get
-```
-make: *** No rule to make target `<allowed_function>.o', needed by `test'.  Stop.
-```
-while running `make <recipe>` then you should
+coming soon .. (you could post a issue)
 
 **tests**
 
