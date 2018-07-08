@@ -30,6 +30,7 @@ fi
 for file in $(git ls-tree --name-only -r $git_branch)
 do
 	TARGET_MAKEFILE=$(dirname $file)/Makefile
+	echo Updating $TARGET_MAKEFILE
 	sed -e "$EDIT_OPERATION1" -i '' $TARGET_MAKEFILE
 	# echo sed -e "$EDIT_OPERATION1" -i '' $TARGET_MAKEFILE
 done
