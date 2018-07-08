@@ -18,9 +18,8 @@ echo installing in $PWD :
 # echo cd $BASE_DIR
 cd $BASE_DIR
 
-echo copying ...
 echo $FILES
-echo ... to $WORK_DIR
+echo in $WORK_DIR
 # copies files to working directory
 cp $FILES $WORK_DIR
 
