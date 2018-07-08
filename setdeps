@@ -22,9 +22,14 @@ EDIT_OPERATION0='/^DEPS/s/:=.*$/:= '"$DEPS0"'/'
 sed -e "$EDIT_OPERATION0" -i '' Makefile
 
 # set deps in exercices Makefiles
-for file in $(git ls-tree -r master --name-only)
+git_branch=$(git branch --abbrev=0 | grep '^*' | cut -c 3-)
+if test $git_branch != master
+then
+	echo "Warning not in branch master (branch: * $git_branch)"
+fi
+for file in $(git ls-tree --name-only -r $git_branch)
 do
 	TARGET_MAKEFILE=$(dirname $file)/Makefile
 	sed -e "$EDIT_OPERATION1" -i '' $TARGET_MAKEFILE
-	echo sed -e "$EDIT_OPERATION1" -i '' $TARGET_MAKEFILE
+	# echo sed -e "$EDIT_OPERATION1" -i '' $TARGET_MAKEFILE
 done
