@@ -24,5 +24,7 @@ sed -e "$EDIT_OPERATION0" -i '' Makefile
 # set deps in exercices Makefiles
 for file in $(git ls-tree -r master --name-only)
 do
-	sed -e "$EDIT_OPERATION1" -i '' $(dirname $file)/Makefile
+	TARGET_MAKEFILE=$(dirname $file)/Makefile
+	sed -e "$EDIT_OPERATION1" -i '' $TARGET_MAKEFILE
+	echo sed -e "$EDIT_OPERATION1" -i '' $TARGET_MAKEFILE
 done
