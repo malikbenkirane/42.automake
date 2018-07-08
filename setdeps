@@ -19,7 +19,13 @@ EDIT_OPERATION1='/^DEPS/s/:=.*$/:= '"$DEPS1"'/'
 EDIT_OPERATION0='/^DEPS/s/:=.*$/:= '"$DEPS0"'/'
 
 # set deps in root Makefile
-sed -e "$EDIT_OPERATION0" -i '' Makefile
+echo Updating root Makefile
+if sed --version | grep 'GNU' > /dev/null
+then
+	sed -e "$EDIT_OPERATION0" -i '' Makefile
+else
+	sed -i "$EDIT_OPERATION0" Makefile
+fi
 
 # set deps in exercices Makefiles
 git_branch=$(git branch --abbrev=0 | grep '^*' | cut -c 3-)
@@ -31,6 +37,11 @@ for file in $(git ls-tree --name-only -r $git_branch)
 do
 	TARGET_MAKEFILE=$(dirname $file)/Makefile
 	echo Updating $TARGET_MAKEFILE
-	sed -e "$EDIT_OPERATION1" -i '' $TARGET_MAKEFILE
+	if sed --version | grep 'GNU' > /dev/null
+	then
+		sed -i "$EDIT_OPERATION1" $TARGET_MAKEFILE
+	else
+		sed -e "$EDIT_OPERATION1" -i '' $TARGET_MAKEFILE
+	fi
 	# echo sed -e "$EDIT_OPERATION1" -i '' $TARGET_MAKEFILE
 done
