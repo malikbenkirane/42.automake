@@ -6,7 +6,7 @@
 #    By: mben-kir <mben-kir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/04 19:05:37 by mben-kir          #+#    #+#              #
-#    Updated: 2018/07/08 20:39:29 by mben-kir         ###   ########.fr        #
+#    Updated: 2018/07/08 20:46:34 by mben-kir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,17 +18,16 @@ CURRENT_BRANCH := $(shell git branch --abbrev=0 | grep '^*' | cut -c 3-)
 # 	fi ; echo $$branch)
 
 SUBDIRS := $(shell \
-	echo ${CURRENT_BRANCH} ; \
 	for file in `git ls-tree -r ${CURRENT_BRANCH} --name-only`; \
 	do dirname $$file; \
-	done)
+	done | uniq )
 
 DEPS := 
 test: ${DEPS} ${SUBDIRS}
 
 ${SUBDIRS}:
 	@if test "${CURRENT_BRANCH}" != master ; then \
-		echo 'Warning: Not on branch master' ; \
+		echo "Warning: not on branch master (branch: * ${CURRENT_BRANCH})" ; \
 		fi
 	@echo
 	@echo Subdir $@
