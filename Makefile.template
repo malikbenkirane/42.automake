@@ -35,7 +35,7 @@ norme: ${FT_NAME}.c
 		echo norminette OK : $< ; \
 	else \
 		echo norminette KO : $< ; \
-		/bin/false ; \
+		false ; \
 	fi
 
 %.o: %.c
