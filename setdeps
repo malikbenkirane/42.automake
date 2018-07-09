@@ -20,7 +20,7 @@ EDIT_OPERATION0='/^DEPS/s/:=.*$/:= '"$DEPS0"'/'
 
 # set deps in root Makefile
 echo Updating root Makefile
-if sed --version | grep 'GNU' > /dev/null
+if sed --version 2>/dev/null | grep 'GNU' > /dev/null
 then
 	sed -e "$EDIT_OPERATION0" -i '' Makefile
 else
@@ -37,7 +37,7 @@ for file in $(git ls-tree --name-only -r $git_branch)
 do
 	TARGET_MAKEFILE=$(dirname $file)/Makefile
 	echo Updating $TARGET_MAKEFILE
-	if sed --version | grep 'GNU' > /dev/null
+	if sed --version 2>/dev/null | grep 'GNU' > /dev/null
 	then
 		sed -i "$EDIT_OPERATION1" $TARGET_MAKEFILE
 	else
