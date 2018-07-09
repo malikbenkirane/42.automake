@@ -22,9 +22,9 @@ EDIT_OPERATION0='/^DEPS/s/:=.*$/:= '"$DEPS0"'/'
 echo Updating root Makefile
 if sed --version 2>/dev/null | grep 'GNU' > /dev/null
 then
-	sed -e "$EDIT_OPERATION0" -i '' Makefile
-else
 	sed -i "$EDIT_OPERATION0" Makefile
+else
+	sed -e "$EDIT_OPERATION0" -i '' Makefile
 fi
 
 # set deps in exercices Makefiles
