@@ -28,7 +28,7 @@ printtest:
 norme: ${FT_NAME}.c
 	@echo norminette -R CheckForbiddenSourceHeader $<
 	@# FIXME not parallizable
-	@norminette -R CheckForbiddenSourceHeader $< \
+	@PATH=/usr/bin norminette -R CheckForbiddenSourceHeader $< \
 		| grep -v '^Norme' | tee /tmp/normi_last_trace 
 	@if cat /tmp/normi_last_trace | wc -l | tr -d ' ' | \
 		grep '^0' > /dev/null; then \
