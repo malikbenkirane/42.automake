@@ -6,7 +6,7 @@
 #    By: mben-kir <mben-kir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/04 19:05:31 by mben-kir          #+#    #+#              #
-#    Updated: 2018/07/07 23:32:01 by mben-kir         ###   ########.fr        #
+#    Updated: 2018/07/10 15:53:55 by mben-kir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,12 @@ DEPS :=
 
 CFLAGS := -Wall -Wextra -Werror
 CC := gcc
+DFLAGS :=
 
 all: main.c norme test printtest 
 
 test: ${DEPS} ${FT_NAME}.o main.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(DFLAGS) $(CFLAGS) -o $@ $^
 
 printtest:
 	./test | cat -e
@@ -39,7 +40,7 @@ norme: ${FT_NAME}.c
 	fi
 
 %.o: %.c
-	$(CC) -o $@ $(CFLAGS) -c $<
+	$(CC) $(DFLAGS) -o $@ $(CFLAGS) -c $<
 
 clean:
 	rm -f test ${FT_NAME}.o
