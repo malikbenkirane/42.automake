@@ -21,7 +21,7 @@ cd $BASE_DIR
 echo $FILES
 echo in $WORK_DIR
 # copies files to working directory
-cp $FILES $WORK_DIR
+cp -f $FILES $WORK_DIR
 
 # echo cd $WORK_DIR
 cd $WORK_DIR
