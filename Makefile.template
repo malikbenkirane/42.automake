@@ -12,14 +12,15 @@
 
 FT_NAME := 
 DEPS :=
+MAIN := main.c
 
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -g -Wall -Wextra -Werror
 CC := gcc
 DFLAGS :=
 
-all: main.c norme test printtest 
+all: $(MAIN) norme test printtest 
 
-test: ${DEPS} ${FT_NAME}.o main.c
+test: ${DEPS} ${FT_NAME}.o $(MAIN)
 	$(CC) $(DFLAGS) $(CFLAGS) -o $@ $^
 
 printtest:
@@ -42,5 +43,10 @@ norme: ${FT_NAME}.c
 %.o: %.c
 	$(CC) $(DFLAGS) -o $@ $(CFLAGS) -c $<
 
+re:	fclean all
+
 clean:
-	rm -f test ${FT_NAME}.o
+	rm -f ${FT_NAME}.o
+
+fclean: clean
+	rm -f clean
