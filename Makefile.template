@@ -24,7 +24,7 @@ test: ${DEPS} ${FT_NAME}.o $(MAIN)
 	$(CC) $(DFLAGS) $(CFLAGS) -o $@ $^
 
 printtest:
-	./test | cat -e
+	./test | cat -ne
 	@echo
 
 norme: ${FT_NAME}.c
